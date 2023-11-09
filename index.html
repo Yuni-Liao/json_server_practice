@@ -83,7 +83,7 @@
                 let task = $('#updatetask').val().trim();
                 if (!task) return false;
                 $.ajax({
-                    url: 'https://jsonserverpractice.onrender.com/todolist' + id,
+                    url: 'https://jsonserverpractice.onrender.com/todolist/' + id,
                     method: 'PUT',
                     dataType: 'json',
                     data: {
@@ -101,7 +101,7 @@
             $('#delete').on('click', function () {
                 let id = $('#deleteInput').val()
                 $.ajax({
-                    url: 'https://jsonserverpractice.onrender.com/todolist' + id,
+                    url: 'https://jsonserverpractice.onrender.com/todolist/' + id,
                     method: 'DELETE',
                     dataType: 'json',
                 }).done(function (res) {
