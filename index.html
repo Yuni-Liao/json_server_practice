@@ -34,10 +34,11 @@
         integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
         crossorigin='anonymous'></script>
     <script>
+
         $(function () {
             // 讀取資料
             $.ajax({
-                url: '/todolist',
+                url: `${process.env.GITHUB_PAGES_URL}`,
                 method: 'GET',
                 dataType: 'json',
                 data: {}
@@ -57,7 +58,7 @@
                 let task = $('#createInput').val().trim();
                 if (!task) return false;
                 $.ajax({
-                    url: '/todolist/',
+                    url: `${process.env.GITHUB_PAGES_URL}`,
                     method: 'POST',
                     dataType: 'json',
                     data: {
@@ -81,7 +82,7 @@
                 let task = $('#updatetask').val().trim();
                 if (!task) return false;
                 $.ajax({
-                    url: '/todolist/' + id,
+                    url: `${process.env.GITHUB_PAGES_URL}` + id,
                     method: 'PUT',
                     dataType: 'json',
                     data: {
@@ -99,7 +100,7 @@
             $('#delete').on('click', function () {
                 let id = $('#deleteInput').val()
                 $.ajax({
-                    url: '/todolist/' + id,
+                    url: `${process.env.GITHUB_PAGES_URL}` + id,
                     method: 'DELETE',
                     dataType: 'json',
                 }).done(function (res) {
