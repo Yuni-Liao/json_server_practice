@@ -34,11 +34,12 @@
         integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
         crossorigin='anonymous'></script>
     <script>
+        const baseUrl = 'https://yuni-liao.github.io/json_server_practice';
 
         $(function () {
             // 讀取資料
             $.ajax({
-                url: `${process.env.GITHUB_PAGES_URL}`,
+                url: `${baseUrl}/todolist`,
                 method: 'GET',
                 dataType: 'json',
                 data: {}
@@ -58,7 +59,7 @@
                 let task = $('#createInput').val().trim();
                 if (!task) return false;
                 $.ajax({
-                    url: `${process.env.GITHUB_PAGES_URL}`,
+                    url: `${baseUrl}/todolist`,
                     method: 'POST',
                     dataType: 'json',
                     data: {
@@ -82,7 +83,7 @@
                 let task = $('#updatetask').val().trim();
                 if (!task) return false;
                 $.ajax({
-                    url: `${process.env.GITHUB_PAGES_URL}` + id,
+                    url: `${baseUrl}/todolist` + id,
                     method: 'PUT',
                     dataType: 'json',
                     data: {
@@ -100,7 +101,7 @@
             $('#delete').on('click', function () {
                 let id = $('#deleteInput').val()
                 $.ajax({
-                    url: `${process.env.GITHUB_PAGES_URL}` + id,
+                    url: `${baseUrl}/todolist` + id,
                     method: 'DELETE',
                     dataType: 'json',
                 }).done(function (res) {
