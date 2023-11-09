@@ -48,7 +48,6 @@
                     res.forEach(todolist => {
                         $('#todolist').append(`<li>${todolist.id} . ${todolist.task}</li>`)
                     });
-                location.reload();
                 console.log(res)
             }).fail(function (err) {
                 console.log(err)
