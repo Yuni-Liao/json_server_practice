@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta task="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1>簡易待辦任務</h1>
+        <div>
+            <input type="text" id="createInput" placeholder="請輸入任務內容">
+            <button id="create" href="#">Create</button>
+        </div>
+        <div>
+            <input type="text" id="deleteInput" placeholder="請輸入任務編號">
+            <button id="delete" href="#">Delete</button>
+        </div>
+        <div>
+            <input type="text" id="updateId" placeholder="請輸入任務編號">
+            <input type="text" id="updatetask" placeholder="請輸入任務內容">
+            <button id="update" href="#">Update</button>
+        </div>
+        <br>
+        <hr><br>
+        <ul id="todolist"></ul>
+    </div>
+    <!-- 掛載 jQuery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+        integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+        crossorigin='anonymous'></script>
+    <script>
+        $(function () {
+            // 讀取資料
+            $.ajax({
+                url: 'http://localhost:3000/todolist',
+                method: 'GET',
+                dataType: 'json',
+                data: {}
+            }).done(function (res) {
+                $('#todolist').empty(),
+                    res.forEach(todolist => {
+                        $('#todolist').append(`<li>${todolist.id} . ${todolist.task}</li>`)
+                    });
+                console.log(res)
+            }).fail(function (err) {
+                console.log(err)
+            })
+
+            // 新增資料
+            $('#create').on('click', function () {
+                // 簡易判斷 - 前後空白字元刪除, 不可為空值
+                let task = $('#createInput').val().trim();
+                if (!task) return false;
+                $.ajax({
+                    url: 'http://localhost:3000/todolist/',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        task: task
+                    }
+                }).done(function (res) {
+                    res.forEach(todolist => {
+                        $('#todolist').append(`<li>${todolist.task}</li>`)
+                    });
+                    console.log(res)
+                }).fail(function (err) {
+                    console.log(err)
+                })
+            })
+
+            // 修改資料
+            $('#update').on('click', function () {
+                // 簡易判斷 - 前後空白字元刪除, 不可為空值
+                let id = $('#updateId').val().trim();
+                if (!id) return false;
+                let task = $('#updatetask').val().trim();
+                if (!task) return false;
+                $.ajax({
+                    url: 'http://localhost:3000/todolist/' + id,
+                    method: 'PUT',
+                    dataType: 'json',
+                    data: {
+                        id: id,
+                        task: task,
+                    }
+                }).done(function (res) {
+                    console.log(res)
+                }).fail(function (err) {
+                    console.log(err)
+                })
+            })
+
+            // 刪除資料
+            $('#delete').on('click', function () {
+                let id = $('#deleteInput').val()
+                $.ajax({
+                    url: 'http://localhost:3000/todolist/' + id,
+                    method: 'DELETE',
+                    dataType: 'json',
+                }).done(function (res) {
+                    console.log(res)
+                }).fail(function (err) {
+                    console.log(err)
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
