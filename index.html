@@ -66,9 +66,7 @@
                         task: task
                     }
                 }).done(function (res) {
-                    res.forEach(todolist => {
-                        $('#todolist').append(`<li>${todolist.task}</li>`)
-                    });
+                    $('#todolist').append(`<li>${todolist.task}</li>`);
                     location.reload();
                     console.log(res)
                 }).fail(function (err) {
