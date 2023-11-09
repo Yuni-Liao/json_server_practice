@@ -37,7 +37,7 @@
         $(function () {
             // 讀取資料
             $.ajax({
-                url: 'http://localhost:3000/todolist',
+                url: '/todolist',
                 method: 'GET',
                 dataType: 'json',
                 data: {}
@@ -57,7 +57,7 @@
                 let task = $('#createInput').val().trim();
                 if (!task) return false;
                 $.ajax({
-                    url: 'http://localhost:3000/todolist/',
+                    url: '/todolist/',
                     method: 'POST',
                     dataType: 'json',
                     data: {
@@ -81,7 +81,7 @@
                 let task = $('#updatetask').val().trim();
                 if (!task) return false;
                 $.ajax({
-                    url: 'http://localhost:3000/todolist/' + id,
+                    url: '/todolist/' + id,
                     method: 'PUT',
                     dataType: 'json',
                     data: {
@@ -99,7 +99,7 @@
             $('#delete').on('click', function () {
                 let id = $('#deleteInput').val()
                 $.ajax({
-                    url: 'http://localhost:3000/todolist/' + id,
+                    url: '/todolist/' + id,
                     method: 'DELETE',
                     dataType: 'json',
                 }).done(function (res) {
