@@ -1,19 +1,24 @@
 {
-    "posts": [
+    "todolist": [
         {
             "id": 1,
-            "title": "json-server",
-            "author": "typicode"
-        }
-    ],
-    "comments": [
+            "task": "去桃園圖書館還書"
+        },
         {
-            "id": 1,
-            "body": "some comment",
-            "postId": 1
+            "id": 2,
+            "task": "寫日文作業"
+        },
+        {
+            "id": 3,
+            "task": "看JS教學"
+        },
+        {
+            "task": "七點吃火鍋",
+            "id": 4
+        },
+        {
+            "id": 5,
+            "task": "練習RESTful API"
         }
-    ],
-    "profile": {
-        "name": "typicode"
-    }
+    ]
 }
